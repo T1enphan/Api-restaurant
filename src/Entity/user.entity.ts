@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Profiles } from "./Profile.entity";
+import { Posts } from "./Posts.entity";
 
 
 export enum ROLES {
@@ -27,5 +28,6 @@ export class User {
     profile: Profiles;
     //profile đây là khóa phụ để liên kết với các bảng
 
-
+    @OneToMany(() => Posts, (posts) => posts.user)
+    posts: Posts[];
 }
